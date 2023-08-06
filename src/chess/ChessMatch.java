@@ -1,6 +1,8 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
+import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
@@ -19,6 +21,14 @@ public class ChessMatch {
             }
         }
         return  mat;
+    }
+
+    public ChessPiece performChessMove(ChessPostion sourcePosition, ChessPostion targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove();
+
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
