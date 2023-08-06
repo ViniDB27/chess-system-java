@@ -27,8 +27,21 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
-        Piece capturedPiece = makeMove();
+        Piece capturedPiece = makeMove(source, target);
+        return (ChessPiece) capturedPiece;
+    }
 
+    private Piece makeMove(Position source, Position targe) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(targe);
+        board.placePiece(p, targe);
+        return capturedPiece;
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!board.therIsAPiece(position)) {
+            throw new ChessException("There is no piece on source position");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
